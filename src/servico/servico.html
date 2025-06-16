@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestão de Serviços - You Time</title>
+  <link rel="stylesheet" href="servico.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <h2>Gestão de Serviços</h2>
+
+  <button id="btn-limpar">
+    <i data-lucide="circle-plus"></i> Limpar
+  </button>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Preço</th>
+        <th>Duração (min)</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody id="tabelaServicos">
+      <!-- Linhas criadas via JS -->
+    </tbody>
+  </table>
+
+  <div id="modal">
+    <h3>Editar Serviço:</h3>
+
+    <label>ID:
+      <input type="text" id="servico-id" readonly>
+    </label><br>
+
+    <label>Nome:
+      <input type="text" id="servico-nome">
+    </label><br>
+
+    <label>Preço (R$):
+      <input type="number" id="servico-preco" step="0.01">
+    </label><br>
+
+    <label>Duração (min):
+      <input type="number" id="servico-duracao">
+    </label><br><br>
+
+    <button id="btn-salvar"><i data-lucide="save"></i> Salvar</button>
+    <button id="btn-excluir"><i data-lucide="trash-2"></i> Excluir</button>
+  </div>
+
+  <script src="servico.js"></script>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

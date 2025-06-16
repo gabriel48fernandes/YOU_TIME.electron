@@ -1,0 +1,234 @@
+body {
+    font-family: 'JetBrains Mono', 'Fira Mono', 'Consolas', 'Menlo', 'Monaco', monospace;
+    margin: 0;
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+/* Títulos */
+h1 {
+    color: #00c3ff;
+    font-size: 2.4rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 48px;
+    text-align: center;
+    text-shadow: 0 2px 16px #00c3ff66, 0 2px 8px rgba(0,195,255,0.12);
+}
+
+h2 {
+    margin-top: 30px;
+    color: #d7ba7d;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* Botões do menu principal */
+body > button {
+    width: 300px;
+    margin: 18px 0;
+    font-size: 1.18rem;
+    padding: 16px 0;
+    background: linear-gradient(90deg, #00c3ff 60%, #3794ff 100%);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 24px #00c3ff33, 0 2px 12px rgba(55,148,255,0.08);
+    transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+    text-align: center;
+    justify-content: center;
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+}
+
+body > button:hover {
+    background: linear-gradient(90deg, #00e0ff 60%, #3794ff 100%);
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 4px 32px #00c3ff55, 0 4px 20px rgba(55,148,255,0.18);
+}
+
+body > button:active {
+    background: #00c3ff;
+    transform: scale(0.98);
+    box-shadow: 0 2px 12px #00c3ff33;
+}
+
+/* Tabela estruturada */
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+    margin-top: 24px;
+    background: #23272e;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+}
+
+th, td {
+    padding: 14px 18px;
+    font-size: 1rem;
+}
+
+th {
+    background-color: #23272e;
+    color: #00c3ff;
+    font-weight: 700;
+    border-bottom: 2px solid #00c3ff;
+    letter-spacing: 0.5px;
+    text-align: left;
+}
+
+td {
+    border-bottom: 1px solid #2d2d2d;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #252526;
+}
+tbody tr:hover {
+    background-color: #2a2d2e;
+    transition: background 0.2s;
+}
+
+/* Botões gerais */
+button, input[type="submit"] {
+    background-color: #00c3ff;
+    color: #fff;
+    padding: 8px 18px;
+    margin: 4px 2px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(0,195,255,0.12);
+    transition: background-color 0.2s, box-shadow 0.2s, transform 0.1s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+button:hover, input[type="submit"]:hover {
+    background-color: #00e0ff;
+    box-shadow: 0 4px 16px #00c3ff33;
+    transform: translateY(-2px) scale(1.03);
+}
+
+button:active, input[type="submit"]:active {
+    background-color: #00c3ff;
+    transform: scale(0.98);
+}
+
+/* Botão editar especial */
+.edit-btn button {
+    background-color: #d7ba7d;
+    color: #1e1e1e;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 6px;
+}
+
+.edit-btn button:hover {
+    background-color: #c9ae6b;
+}
+
+/* Formulário */
+form {
+    margin-top: 30px;
+    padding: 20px 18px;
+    background-color: #23272e;
+    border: 1.5px solid #00c3ff;
+    border-radius: 10px;
+    width: 340px;
+    box-shadow: 0 2px 12px rgba(0,195,255,0.18);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Labels em azul VS Code */
+label {
+    display: block;
+    margin-top: 14px;
+    font-weight: bold;
+    color: #00c3ff;
+    font-size: 1rem;
+    letter-spacing: 0.3px;
+}
+
+/* Inputs */
+input[type="text"], input[type="number"], input[type="email"], input[type="password"], textarea, select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 6px;
+    border: 1.5px solid #333;
+    border-radius: 5px;
+    background: #1e1e1e;
+    color: #d4d4d4;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: border 0.2s, background 0.2s;
+    box-sizing: border-box;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+select:focus {
+    border: 1.5px solid #00c3ff;
+    background: #23272e;
+    outline: none;
+}
+
+/* Scrollbar customizada estilo VS Code */
+::-webkit-scrollbar {
+    width: 8px;
+    background: #23272e;
+}
+::-webkit-scrollbar-thumb {
+    background: #2d2d2d;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #00c3ff;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+    body {
+        margin: 8px;
+    }
+    form {
+        width: 98vw;
+        min-width: unset;
+        padding: 12px;
+    }
+    table {
+        font-size: 0.95rem;
+    }
+    th, td {
+        padding: 8px 6px;
+    }
+    body > button {
+        width: 98vw;
+        min-width: unset;
+        font-size: 1rem;
+        padding: 12px 0;
+    }
+}

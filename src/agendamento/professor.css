@@ -1,0 +1,161 @@
+body {
+    font-family: 'JetBrains Mono', 'Fira Mono', 'Consolas', 'Menlo', 'Monaco', monospace;
+    margin: 30px;
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+}
+
+/* Títulos */
+h2 {
+    margin-top: 30px;
+    color: #d7ba7d;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* Tabela estruturada */
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+    margin-top: 24px;
+    background: #23272e;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+}
+
+/* Cabeçalho da tabela */
+th {
+    background-color: #23272e;
+    color: #3794ff;
+    font-weight: 700;
+    padding: 14px 18px;
+    border-bottom: 2px solid #3794ff;
+    font-size: 1.08rem;
+    letter-spacing: 0.5px;
+    text-align: left;
+}
+
+td {
+    padding: 14px 18px;
+    border-bottom: 1px solid #2d2d2d;
+    font-size: 1rem;
+}
+
+/* Última linha sem borda */
+tr:last-child td {
+    border-bottom: none;
+}
+
+/* Linhas alternadas e hover */
+tbody tr:nth-child(even) {
+    background-color: #252526;
+}
+tbody tr:hover {
+    background-color: #2a2d2e;
+    transition: background 0.2s;
+}
+
+/* Botões */
+button, input[type="submit"] {
+    background-color: #0e639c;
+    color: #fff;
+    padding: 8px 18px;
+    margin: 4px 2px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    transition: background-color 0.2s, box-shadow 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+button:hover, input[type="submit"]:hover {
+    background-color: #1177bb;
+    box-shadow: 0 4px 16px rgba(14,99,156,0.15);
+}
+
+/* Botão editar especial */
+.edit-btn button {
+    background-color: #d7ba7d;
+    color: #1e1e1e;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 6px;
+}
+
+.edit-btn button:hover {
+    background-color: #c9ae6b;
+}
+
+/* Formulário */
+form {
+    margin-top: 30px;
+    padding: 20px 18px;
+    background-color: #23272e;
+    border: 1.5px solid #3794ff;
+    border-radius: 10px;
+    width: 340px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+}
+
+/* Labels em azul VS Code */
+label {
+    display: block;
+    margin-top: 14px;
+    font-weight: bold;
+    color: #3794ff;
+    font-size: 1rem;
+    letter-spacing: 0.3px;
+}
+
+/* Inputs */
+input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 6px;
+    border: 1.5px solid #333;
+    border-radius: 5px;
+    background: #1e1e1e;
+    color: #d4d4d4;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: border 0.2s, background 0.2s;
+}
+
+input[type="text"]:focus {
+    border: 1.5px solid #3794ff;
+    background: #23272e;
+    outline: none;
+}
+
+/* Scrollbar customizada estilo VS Code */
+::-webkit-scrollbar {
+    width: 8px;
+    background: #23272e;
+}
+::-webkit-scrollbar-thumb {
+    background: #2d2d2d;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #3794ff;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+    form {
+        width: 98vw;
+        min-width: unset;
+        padding: 12px;
+    }
+    table {
+        font-size: 0.95rem;
+    }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "14052025",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "lucide": "^0.511.0",
+    "pg": "^8.16.0"
+  },
+  "devDependencies": {
+    "electron": "^36.2.0"
+  }
+}
