@@ -20,28 +20,28 @@ function criarJanelaModal(telaPai, arquivohtml) {
 function modalAbrirCliente() {
   const main = getJanelaPrincipal();
   if (main) {
-    criarJanelaModal(main, './src/cliente/cliente.html');
+    criarJanelaModal(main, './cliente/cliente.html');
   }
 }
 
 function modalAbrirServico() {
   const main = getJanelaPrincipal();
   if (main) {
-    criarJanelaModal(main, './src/servico/servico.html');
+    criarJanelaModal(main, './servico/servico.html');
   }
 }
 
 function modalAbrirAgenda() {
   const main = getJanelaPrincipal();
   if (main) {
-    criarJanelaModal(main, './src/agenda/agenda.html');
+    criarJanelaModal(main, './agenda/agenda.html');
   }
 }
 
 function modalAbrirAgendamento() {
   const main = getJanelaPrincipal();
   if (main) {
-    criarJanelaModal(main, './src/agendamento/agendamento.html');
+    criarJanelaModal(main, './agendamento/agendamento.html');
   }
 }
 

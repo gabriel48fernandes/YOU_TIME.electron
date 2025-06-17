@@ -1,9 +1,11 @@
 const db = require('../db');
 
+// clienteDB.js
 async function buscarClientes() {
   const resultado = await db.query('SELECT * FROM cliente ORDER BY id');
   return resultado.rows;
 }
+
 
 async function adicionarCliente(event, nome, telefone, email) {
   await db.query(

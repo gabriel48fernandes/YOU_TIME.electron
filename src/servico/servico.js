@@ -13,92 +13,83 @@ btnExcluir.addEventListener('click', excluirServico);
 btnLimpar.addEventListener('click', limparCampos);
 
 async function carregarServicos() {
-  const listaServicos = await window.senacAPI.buscarServicos();
-  tabela.innerHTML = "";
+    const lista = await window.senacAPI.buscarServicos();
+    tabela.innerHTML = '';
 
-  listaServicos.forEach(criarLinhaServico);
+    lista.forEach(criarLinhaServico);
 
-  if (listaServicos.length === 0) {
-    tabela.textContent = "Sem dados";
-  }
+    if (!lista.length) {
+        tabela.textContent = 'Sem dados';
+    }
 
-  lucide.createIcons();
+    lucide.createIcons();
 }
 
 function criarLinhaServico(servico) {
-  const linha = document.createElement("tr");
+    const linha = document.createElement('tr');
 
-  const celulaNome = document.createElement("td");
-  celulaNome.textContent = servico.nome;
-  linha.appendChild(celulaNome);
+    linha.innerHTML = `
+        <td>${servico.nome}</td>
+        <td>R$ ${servico.preco}</td>
+        <td>${servico.duracao_minutos} min</td>
+    `;
 
-  const celulaPreco = document.createElement("td");
-  celulaPreco.textContent = `R$ ${servico.preco}`;
-  linha.appendChild(celulaPreco);
+    const celulaAcoes = document.createElement('td');
+    const botao = document.createElement('button');
+    botao.innerHTML = '<i data-lucide="edit"></i>';
+    botao.addEventListener('click', () => preencherCampos(servico));
+    celulaAcoes.appendChild(botao);
 
-  const celulaDuracao = document.createElement("td");
-  celulaDuracao.textContent = `${servico.duracao_minutos} min`;
-  linha.appendChild(celulaDuracao);
-
-  const celulaAcoes = document.createElement("td");
-  const botao = document.createElement("button");
-  const icone = document.createElement("i");
-  icone.setAttribute("data-lucide", "edit");
-  botao.appendChild(icone);
-  botao.addEventListener("click", () => preencherCampos(servico));
-  celulaAcoes.appendChild(botao);
-  linha.appendChild(celulaAcoes);
-
-  tabela.appendChild(linha);
+    linha.appendChild(celulaAcoes);
+    tabela.appendChild(linha);
 }
 
 function preencherCampos(servico) {
-  inputId.value = servico.id;
-  inputNome.value = servico.nome;
-  inputPreco.value = servico.preco;
-  inputDuracao.value = servico.duracao_minutos;
+    inputId.value = servico.id;
+    inputNome.value = servico.nome;
+    inputPreco.value = servico.preco;
+    inputDuracao.value = servico.duracao_minutos;
 }
 
 function limparCampos() {
-  inputId.value = '';
-  inputNome.value = '';
-  inputPreco.value = '';
-  inputDuracao.value = '';
+    inputId.value = '';
+    inputNome.value = '';
+    inputPreco.value = '';
+    inputDuracao.value = '';
 }
 
 async function salvarServico() {
-  const nome = inputNome.value;
-  const preco = inputPreco.value;
-  const duracao = inputDuracao.value;
-  const id = inputId.value;
+    const nome = inputNome.value;
+    const preco = inputPreco.value;
+    const duracao = inputDuracao.value;
 
-  if (!nome || !preco || !duracao) {
-    alert('Preencha todos os campos!');
-    return;
-  }
+    if (!nome) {
+        alert('Preencha o nome!');
+        return;
+    }
 
-  if (id) {
-    await window.senacAPI.alterarServico(id, nome, preco, duracao);
-  } else {
-    await window.senacAPI.adicionarServico(nome, preco, duracao);
-  }
+    if (inputId.value) {
+        await window.senacAPI.alterarServico(inputId.value, nome, preco, duracao);
+    } else {
+        await window.senacAPI.adicionarServico(nome, preco, duracao);
+    }
 
-  limparCampos();
-  carregarServicos();
+    limparCampos();
+    carregarServicos();
 }
 
 async function excluirServico() {
-  const id = inputId.value;
-  if (!id) {
-    alert('Selecione um serviço para excluir.');
-    return;
-  }
+    const id = inputId.value;
+    if (!id) {
+        alert('Selecione um serviço primeiro.');
+        return;
+    }
 
-  if (confirm('Deseja realmente excluir este serviço?')) {
-    await window.senacAPI.deletarServico(id);
-    limparCampos();
-    carregarServicos();
-  }
+    if (confirm('Deseja excluir este serviço?')) {
+        await window.senacAPI.deletarServico(id);
+        limparCampos();
+        carregarServicos();
+    }
 }
 
 carregarServicos();

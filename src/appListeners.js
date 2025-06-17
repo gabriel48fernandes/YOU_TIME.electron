@@ -15,6 +15,7 @@ function registrarClienteHandler() {
     ipcMain.handle('deletar-cliente', deletarCliente);
 }
 
+
 function registrarServicoHandler() {
     ipcMain.handle('buscar-servicos', buscarServicos);
     ipcMain.handle('adicionar-servico', adicionarServico);
@@ -48,10 +49,12 @@ function registrarJanelas() {
 // === Registrar todos ===
 
 function registrarListeners() {
+   
     registrarClienteHandler();
     registrarServicoHandler();
     registrarAgendamentoHandler();
     registrarAgendaHandler();
+     registrarJanelas();
 }
 module.exports = {
     registrarListeners
