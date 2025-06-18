@@ -1,16 +1,16 @@
 const { app, BrowserWindow } = require('electron')
 const path = require('path')
-const { createMainWindow } = require('./janelaPrincipal')
+const { createloginwindow } = require('./janelaPrincipal')
 
 const {registrarListeners}= require('./appListeners')
 app.whenReady().then(function () {
 
-    createMainWindow();
+    createloginwindow();
     registrarListeners();
 
     app.on('activate', function () {
         if (BrowserWindow.getAllWindows().length === 0) {
-            createMainWindow();
+            createloginwindow();
         }
     });
 

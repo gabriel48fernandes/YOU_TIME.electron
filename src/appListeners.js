@@ -5,8 +5,12 @@ const { buscarClientes, adicionarCliente, alterarCliente, deletarCliente } = req
 const { buscarServicos, adicionarServico, alterarServico, deletarServico } = require('./servico/servicoDB');
 const { buscarAgenda, adicionarAgenda, alterarAgenda, deletarAgenda } = require('./agenda/agendaDB');
 const { buscarAgendamentos, adicionarAgendamento, alterarAgendamento, deletarAgendamento } = require('./agendamento/agendamentoDB');
-
+const { validarLogin } = require('./login/loginDB');
 // === Handlers ===
+
+function registrarLoginHandler() {
+    ipcMain.handle('validar-login', validarLogin);
+}
 
 function registrarClienteHandler() {
     ipcMain.handle('buscar-clientes', buscarClientes);
@@ -49,7 +53,7 @@ function registrarJanelas() {
 // === Registrar todos ===
 
 function registrarListeners() {
-   
+    registrarLoginHandler();
     registrarClienteHandler();
     registrarServicoHandler();
     registrarAgendamentoHandler();

@@ -24,6 +24,9 @@ contextBridge.exposeInMainWorld('senacAPI', {
   adicionarAgendamento: (idcliente, idservico, idagenda) => ipcRenderer.invoke('adicionar-agendamento', idcliente, idservico, idagenda),
   alterarAgendamento: (id, idcliente, idservico, idagenda) => ipcRenderer.invoke('alterar-agendamento', id, idcliente, idservico, idagenda),
   deletarAgendamento: (id) => ipcRenderer.invoke('deletar-agendamento', id),
+
+  validarLogin: (usuario,senha) => ipcRenderer.invoke('validar-login',usuario,senha),
+
 });
 
 // ==== JANELAS ====
@@ -32,4 +35,6 @@ contextBridge.exposeInMainWorld('janelaAPI', {
   abrirServico: () => ipcRenderer.send('abrir-servico'),
   abrirAgenda: () => ipcRenderer.send('abrir-agenda'),
   abrirAgendamento: () => ipcRenderer.send('abrir-agendamento'),
+// =====login=====
+  
 });
