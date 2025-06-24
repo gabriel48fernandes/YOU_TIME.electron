@@ -1,40 +1,121 @@
 const { contextBridge, ipcRenderer } = require('electron');
 
 // ==== CLIENTES ====
+function buscarClientes() {
+  return ipcRenderer.invoke('buscar-clientes');
+}
+function adicionarCliente(nome, telefone, email) {
+  return ipcRenderer.invoke('adicionar-cliente', nome, telefone, email);
+}
+function alterarCliente(id, nome, telefone, email) {
+  return ipcRenderer.invoke('alterar-cliente', id, nome, telefone, email);
+}
+function deletarCliente(id) {
+  return ipcRenderer.invoke('deletar-cliente', id);
+}
+
+// ==== SERVIÇOS ====
+function buscarServicos() {
+  return ipcRenderer.invoke('buscar-servicos');
+}
+function adicionarServico(nome, preco, duracao) {
+  return ipcRenderer.invoke('adicionar-servico', nome, preco, duracao);
+}
+function alterarServico(id, nome, preco, duracao) {
+  return ipcRenderer.invoke('alterar-servico', id, nome, preco, duracao);
+}
+function deletarServico(id) {
+  return ipcRenderer.invoke('deletar-servico', id);
+}
+
+// ==== AGENDA DISPONÍVEL ====
+function buscarAgenda() {
+  return ipcRenderer.invoke('buscar-agenda');
+}
+function adicionarAgenda(data, hora) {
+  return ipcRenderer.invoke('adicionar-agenda', data, hora);
+}
+function alterarAgenda(id, data, hora, disponivel) {
+  return ipcRenderer.invoke('alterar-agenda', id, data, hora, disponivel);
+}
+function deletarAgenda(id) {
+  return ipcRenderer.invoke('deletar-agenda', id);
+}
+
+// ==== AGENDAMENTOS ====
+function buscarAgendamentos() {
+  return ipcRenderer.invoke('buscar-agendamentos');
+}
+function adicionarAgendamento(idcliente, idservico, idagenda) {
+  return ipcRenderer.invoke('adicionar-agendamento', idcliente, idservico, idagenda);
+}
+function alterarAgendamento(id, idcliente, idservico, idagenda) {
+  return ipcRenderer.invoke('alterar-agendamento', id, idcliente, idservico, idagenda);
+}
+function deletarAgendamento(id) {
+  return ipcRenderer.invoke('deletar-agendamento', id);
+}
+
+// ==== LOGIN ====
+function validarLogin(usuario, senha) {
+  return ipcRenderer.invoke('validar-login', usuario, senha);
+}
+
+// ==== API UNIFICADA ====
 contextBridge.exposeInMainWorld('senacAPI', {
-  buscarClientes: () => ipcRenderer.invoke('buscar-clientes'),
-  adicionarCliente: (nome, telefone, email) => ipcRenderer.invoke('adicionar-cliente', nome, telefone, email),
-  alterarCliente: (id, nome, telefone, email) => ipcRenderer.invoke('alterar-cliente', id, nome, telefone, email),
-  deletarCliente: (id) => ipcRenderer.invoke('deletar-cliente', id),
+  // Clientes
+  buscarClientes,
+  adicionarCliente,
+  alterarCliente,
+  deletarCliente,
 
-  // ==== SERVIÇOS ====
-  buscarServicos: () => ipcRenderer.invoke('buscar-servicos'),
-  adicionarServico: (nome, preco, duracao) => ipcRenderer.invoke('adicionar-servico', nome, preco, duracao),
-  alterarServico: (id, nome, preco, duracao) => ipcRenderer.invoke('alterar-servico', id, nome, preco, duracao),
-  deletarServico: (id) => ipcRenderer.invoke('deletar-servico', id),
+  // Serviços
+  buscarServicos,
+  adicionarServico,
+  alterarServico,
+  deletarServico,
 
-  // ==== AGENDA DISPONÍVEL ====
-  buscarAgenda: () => ipcRenderer.invoke('buscar-agenda'),
-  adicionarAgenda: (data, hora) => ipcRenderer.invoke('adicionar-agenda', data, hora),
-  alterarAgenda: (id, data, hora, disponivel) => ipcRenderer.invoke('alterar-agenda', id, data, hora, disponivel),
-  deletarAgenda: (id) => ipcRenderer.invoke('deletar-agenda', id),
+  // Agenda
+  buscarAgenda,
+  adicionarAgenda,
+  alterarAgenda,
+  deletarAgenda,
 
-  // ==== AGENDAMENTOS ====
-  buscarAgendamentos: () => ipcRenderer.invoke('buscar-agendamentos'),
-  adicionarAgendamento: (idcliente, idservico, idagenda) => ipcRenderer.invoke('adicionar-agendamento', idcliente, idservico, idagenda),
-  alterarAgendamento: (id, idcliente, idservico, idagenda) => ipcRenderer.invoke('alterar-agendamento', id, idcliente, idservico, idagenda),
-  deletarAgendamento: (id) => ipcRenderer.invoke('deletar-agendamento', id),
+  // Agendamentos
+  buscarAgendamentos,
+  adicionarAgendamento,
+  alterarAgendamento,
+  deletarAgendamento,
 
-  validarLogin: (usuario,senha) => ipcRenderer.invoke('validar-login',usuario,senha),
-
+  // Login
+  validarLogin
 });
 
 // ==== JANELAS ====
+function abrirCliente() {
+  ipcRenderer.send('abrir-cliente');
+}
+function abrirServico() {
+  ipcRenderer.send('abrir-servico');
+}
+function abrirAgenda() {
+  ipcRenderer.send('abrir-agenda');
+}
+function abrirAgendamento() {
+  ipcRenderer.send('abrir-agendamento');
+}
+function abrirJanelaPrincipal() {
+  ipcRenderer.send('abrir-menu');
+}
+// ==== Login (se quiser abrir uma tela de login futuramente) ====
+// function abrirLogin() {
+//   ipcRenderer.send('abrir-login');
+// }
+
 contextBridge.exposeInMainWorld('janelaAPI', {
-  abrirCliente: () => ipcRenderer.send('abrir-cliente'),
-  abrirServico: () => ipcRenderer.send('abrir-servico'),
-  abrirAgenda: () => ipcRenderer.send('abrir-agenda'),
-  abrirAgendamento: () => ipcRenderer.send('abrir-agendamento'),
-// =====login=====
-  
+  abrirCliente,
+  abrirServico,
+  abrirAgenda,
+  abrirAgendamento,
+  abrirJanelaPrincipal
 });

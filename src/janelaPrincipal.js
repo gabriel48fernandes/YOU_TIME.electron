@@ -18,6 +18,7 @@ function createMainWindow() {
     janelaPrincipal.on('closed', () => {
         janelaPrincipal = null
     })
+    janelaLogin.close()
 
     return janelaPrincipal
 }
