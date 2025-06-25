@@ -1,6 +1,6 @@
 const { ipcMain } = require('electron');
 const { modalAbrirAgendamento, modalAbrirCliente, modalAbrirServico, modalAbrirAgenda } = require('./janelaModal');
-const{ createMainWindow, getJanelaPrincipal } = require('./janelaPrincipal');
+const { createMainWindowAdmin, createMainWindowUser } = require('./janelaPrincipal');
 const { buscarClientes, adicionarCliente, alterarCliente, deletarCliente } = require('./cliente/clienteDB');
 const { buscarServicos, adicionarServico, alterarServico, deletarServico } = require('./servico/servicoDB');
 const { buscarAgenda, adicionarAgenda, alterarAgenda, deletarAgenda } = require('./agenda/agendaDB');
@@ -48,8 +48,10 @@ function registrarJanelas() {
     ipcMain.on('abrir-servico', modalAbrirServico);
     ipcMain.on('abrir-agenda', modalAbrirAgenda);
     ipcMain.on('abrir-agendamento', modalAbrirAgendamento);
-    ipcMain.on('abrir-menu', createMainWindow);
+    ipcMain.on('abrir-menu-admin', createMainWindowAdmin);
+    ipcMain.on('abrir-menu-user', createMainWindowUser);
 }
+
 
 // === Registrar todos ===
 

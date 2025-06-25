@@ -104,18 +104,18 @@ function abrirAgenda() {
 function abrirAgendamento() {
   ipcRenderer.send('abrir-agendamento');
 }
-function abrirJanelaPrincipal() {
-  ipcRenderer.send('abrir-menu');
+function abrirJanelaAdmin() {
+  ipcRenderer.send('abrir-menu-admin');
 }
-// ==== Login (se quiser abrir uma tela de login futuramente) ====
-// function abrirLogin() {
-//   ipcRenderer.send('abrir-login');
-// }
+function abrirJanelaUser() {
+  ipcRenderer.send('abrir-menu-user');
+}
 
 contextBridge.exposeInMainWorld('janelaAPI', {
   abrirCliente,
   abrirServico,
   abrirAgenda,
   abrirAgendamento,
-  abrirJanelaPrincipal
+  abrirJanelaAdmin,
+  abrirJanelaUser
 });

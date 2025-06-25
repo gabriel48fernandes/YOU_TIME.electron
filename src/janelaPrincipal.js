@@ -1,53 +1,67 @@
-const path = require('path')
-const { BrowserWindow } = require('electron')
+const path = require('path');
+const { BrowserWindow } = require('electron');
 
-let janelaPrincipal
-let janelaLogin
+let janelaLogin;
+let janelaAdmin;
+let janelaUser
 
-function createMainWindow() {
-    janelaPrincipal = new BrowserWindow({
+// Janela para Administrador
+function createMainWindowAdmin() {
+    janelaAdmin = new BrowserWindow({
         width: 1000,
         height: 1000,
         webPreferences: {
             preload: path.join(__dirname, 'preload.js')
         }
-    })
+    });
 
-    janelaPrincipal.loadFile('index.html')
-
-    janelaPrincipal.on('closed', () => {
-        janelaPrincipal = null
-    })
-    janelaLogin.close()
-
-    return janelaPrincipal
+    janelaAdmin.loadFile('index.html');
+    return janelaAdmin;
 }
 
-function getJanelaPrincipal() {
-    return janelaPrincipal
+// Janela para Usuário comum
+function createMainWindowUser() {
+     janelaUser = new BrowserWindow({
+        width: 1000,
+        height: 1000,
+        webPreferences: {
+            preload: path.join(__dirname, 'preload.js')
+        }
+    });
+
+    janelaUser.loadFile('indexuser.html');
+    return janelaUser;
 }
 
+// Janela de Login
 function createloginwindow() {
     janelaLogin = new BrowserWindow({
-                                     width: 600,
-                                     height: 500,
-                                     webPreferences: {
-                                     preload: path.join(__dirname, 'preload.js')
-                                     }
-    
-    
-                                    })
-janelaLogin.loadFile('login/login.html')            
-                                }
-   
+        width: 600,
+        height: 500,
+        webPreferences: {
+            preload: path.join(__dirname, 'preload.js')
+        }
+    });
 
-    function getJanelaLogin() {
-        return janelaLogin
-    }
+    janelaLogin.loadFile('login/login.html');
+}
 
-module.exports = { 
-    getJanelaPrincipal,
+// Getters (caso precise futuramente)
+function getJanelaLogin() {
+    return janelaLogin;
+}
+function getJanelaPrincipalAdmin() {
+    return janelaAdmin;
+}
+function getJanelaPrincipalUser() {
+    return janelaUser;
+}
+
+module.exports = {
     createloginwindow,
     getJanelaLogin,
-    createMainWindow
-}
+    createMainWindowAdmin,
+    createMainWindowUser,
+    getJanelaPrincipalAdmin,
+    getJanelaPrincipalUser
+};
