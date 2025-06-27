@@ -4,7 +4,7 @@ const { createMainWindowAdmin, createMainWindowUser } = require('./janelaPrincip
 const { buscarClientes, adicionarCliente, alterarCliente, deletarCliente } = require('./cliente/clienteDB');
 const { buscarServicos, adicionarServico, alterarServico, deletarServico } = require('./servico/servicoDB');
 const { buscarAgenda, adicionarAgenda, alterarAgenda, deletarAgenda } = require('./agenda/agendaDB');
-const { buscarAgendamentos, adicionarAgendamento, alterarAgendamento, deletarAgendamento } = require('./agendamento/agendamentoDB');
+const { buscarAgendamentos,buscarAgendamentosPorCliente, adicionarAgendamento, alterarAgendamento, deletarAgendamento } = require('./agendamento/agendamentoDB');
 const { validarLogin } = require('./login/loginDB');
 // === Handlers ===
 
@@ -36,6 +36,7 @@ function registrarAgendaHandler() {
 
 function registrarAgendamentoHandler() {
     ipcMain.handle('buscar-agendamentos', buscarAgendamentos);
+    ipcMain.handle('buscar-agendamentos-cliente', buscarAgendamentosPorCliente);
     ipcMain.handle('adicionar-agendamento', adicionarAgendamento);
     ipcMain.handle('alterar-agendamento', alterarAgendamento);
     ipcMain.handle('deletar-agendamento', deletarAgendamento);

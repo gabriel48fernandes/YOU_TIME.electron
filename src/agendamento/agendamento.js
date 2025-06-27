@@ -37,17 +37,31 @@ function preencherSelect(select, lista, agenda = false) {
 }
 
 async function carregarAgendamentos() {
-    const lista = await window.senacAPI.buscarAgendamentos();
-    tabela.innerHTML = '';
+  const idcliente = localStorage.getItem('idcliente');
+  const perfil = localStorage.getItem('perfil');
+  
+  let lista;
+  console.log(perfil, idcliente);
 
-    lista.forEach(criarLinhaAgendamento);
+  if (perfil === 'user' && idcliente) {
+    lista = await window.senacAPI.buscarAgendamentosPorCliente(idcliente);
+    selectCliente.disabled = true;
+    selectCliente.title = 'Usuário comum não pode alterar clientes';
+  } else {
+    lista = await window.senacAPI.buscarAgendamentos();
+  }
 
-    if (!lista.length) {
-        tabela.textContent = 'Sem dados';
-    }
+  tabela.innerHTML = '';
 
-    lucide.createIcons();
+  lista.forEach(criarLinhaAgendamento);
+
+  if (!lista.length) {
+    tabela.textContent = 'Sem dados';
+  }
+
+  lucide.createIcons();
 }
+
 
 function criarLinhaAgendamento(agendamento) {
     const linha = document.createElement('tr');

@@ -16,6 +16,7 @@ function createMainWindowAdmin() {
     });
 
     janelaAdmin.loadFile('index.html');
+    janelaLogin.close();
     return janelaAdmin;
 }
 
@@ -28,8 +29,9 @@ function createMainWindowUser() {
             preload: path.join(__dirname, 'preload.js')
         }
     });
-
+    
     janelaUser.loadFile('indexuser.html');
+    janelaLogin.close();
     return janelaUser;
 }
 

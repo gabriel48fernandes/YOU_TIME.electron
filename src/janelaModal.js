@@ -41,7 +41,7 @@ function modalAbrirAgenda() {
 }
 
 function modalAbrirAgendamento() {
-  console.log("vou abrir o modal de agendamento");
+  // Verifica qual janela principal está aberta e cria a janela modal nela
   let main = getJanelaPrincipalAdmin();
   let mainUser = getJanelaPrincipalUser();
   main = main||mainUser;

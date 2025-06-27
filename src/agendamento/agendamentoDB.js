@@ -16,6 +16,26 @@ async function buscarAgendamentos() {
   `);
   return resultado.rows;
 }
+async function buscarAgendamentosPorCliente(event, idcliente) {
+    const resultado = await db.query(`
+        SELECT 
+      agendamentos.id,
+      cliente.nome AS nome_cliente,
+      servicos.nome AS nome_servico,
+      agenda_disponivel.data,
+      agenda_disponivel.hora
+    FROM agendamentos
+    JOIN cliente ON agendamentos.idcliente = cliente.id
+    JOIN servicos ON agendamentos.idservico = servicos.id
+    JOIN agenda_disponivel ON agendamentos.idagenda = agenda_disponivel.id
+    where cliente.id = $1
+    ORDER BY agendamentos.id
+    
+    `, [idcliente]);
+      console.log(resultado.rows);
+    return resultado.rows;
+}
+
 
 async function adicionarAgendamento(event, idcliente, idservico, idagenda) {
   await db.query(
@@ -50,4 +70,5 @@ module.exports = {
   adicionarAgendamento,
   alterarAgendamento,
   deletarAgendamento,
+  buscarAgendamentosPorCliente,
 };
