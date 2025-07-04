@@ -55,6 +55,9 @@ function alterarAgendamento(id, idcliente, idservico, idagenda) {
 function deletarAgendamento(id) {
   return ipcRenderer.invoke('deletar-agendamento', id);
 }
+function buscarAgendamentosPorCliente(idcliente) {
+  return ipcRenderer.invoke('buscar-agendamentos-cliente', idcliente);
+}
 
 // ==== LOGIN ====
 function validarLogin(usuario, senha) {
@@ -71,6 +74,7 @@ contextBridge.exposeInMainWorld('senacAPI', {
 
   // Serviços
   buscarServicos,
+  
   adicionarServico,
   alterarServico,
   deletarServico,
@@ -86,6 +90,7 @@ contextBridge.exposeInMainWorld('senacAPI', {
   adicionarAgendamento,
   alterarAgendamento,
   deletarAgendamento,
+  buscarAgendamentosPorCliente, 
 
   // Login
   validarLogin

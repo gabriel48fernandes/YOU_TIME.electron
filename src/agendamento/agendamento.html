@@ -3,41 +3,57 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gestão de Agendamentos</title>
+  <title>YouTime</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="agendamento.css">
-  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
+  <div class="app">
+    <!-- Tela inicial - Agendamentos existentes -->
+    <div class="step step-inicial" id="step-inicial">
+      <p class="step-label">SEUS AGENDAMENTOS</p>
+      <h1 class="logo">YouTime</h1>
+      <div class="messages">
+        <p>Olá, <strong id="nome-usuario">Usuário</strong>!</p>
+        <p>Aqui estão seus agendamentos:</p>
+      </div>
 
-<h2>Gestão de Agendamentos</h2>
+      <div class="tab-buttons">
+        <button class="tab-btn active" onclick="mostrarTab('agendamentos')">Agendamentos</button>
+        <button class="tab-btn" onclick="mostrarTab('novo')">Novo</button>
+      </div>
 
-<button id="btn-limpar">🆕 Novo</button>
+      <div id="tab-agendamentos">
+        <div class="agendamentos-container" id="lista-agendamentos">
+          <!-- Agendamentos serão carregados aqui -->
+        </div>
+      </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Cliente</th>
-      <th>Serviço</th>
-      <th>Data</th>
-      <th>Hora</th>
-      <th>Ações</th>
-    </tr>
-  </thead>
-  <tbody id="tabelaAgendamentos"></tbody>
-</table>
+      <div id="tab-novo" style="display: none;">
+        <p class="subtitle">Selecione os serviços</p>
+        <div class="services-wrapper">
+          <div class="services" id="lista-servicos"></div>
+        </div>
+        <button class="btn" onclick="proximoPasso()">Continuar</button>
+      </div>
+    </div>
 
-<div id="modal">
-  <h3>Dados do Agendamento</h3>
-  <label>ID: <input type="text" id="agendamento-id" readonly></label><br>
-  <label>Cliente: <select id="agendamento-cliente"></select></label><br>
-  <label>Serviço: <select id="agendamento-servico"></select></label><br>
-  <label>Data e Hora: <select id="agendamento-agenda"></select></label><br><br>
+    <!-- Passo 2 - Seleção de data e horário -->
+    <div class="step step-2" id="step2" style="display: none">
+      <p class="step-label">PASSO 2</p>
+      <p class="subtitle">Selecione o dia e horário</p>
+      <div class="weekdays" id="dias-semana"></div>
+      <div class="calendar-wrapper">
+        <div class="calendar" id="dias-disponiveis"></div>
+      </div>
+      <div class="hours" id="horarios"></div>
+      <button class="btn" onclick="enviarAgendamento()">Agendar</button>
+      <button class="btn-outline" onclick="voltarEtapa()">Voltar</button>
+    </div>
+  </div>
 
-  <button id="btn-salvar">💾 Salvar</button>
-  <button id="btn-excluir">🗑️ Excluir</button>
-</div>
-
-<script src="agendamento.js"></script>
-<script>lucide.createIcons();</script>
+  <script src="agendamento.js"></script>
 </body>
 </html>

@@ -13,9 +13,10 @@ async function validarLogin() {
     if (retorno.perfil) {
         msg.textContent = 'Logando...';
         msg.style.color = 'green';
-        
         localStorage.setItem('perfil', retorno.perfil);
-
+        if (retorno.nome) {
+            localStorage.setItem('nome', retorno.nome);
+        }
 
         if (retorno.perfil === 'adm') {
             await window.janelaAPI.abrirJanelaAdmin();
